@@ -1,0 +1,12 @@
+.header {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.header h1 {
+    width: 100%;
+}
+
+.css-qivjh0-MuiStepLabel-label.Mui-active, .css-qivjh0-MuiStepLabel-label.Mui-completed {
+    color: #1976d2 !important;
+}
