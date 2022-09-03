@@ -1,17 +1,21 @@
 import "./Footer.css";
 import { MobileStepper, Button, useTheme } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
-import { useState } from "react";
+import { getCurrentForm } from "../redux/selector";
+
+import { goNextForm, goPreForm } from "../redux/slices/insuranceProfileSlice";
 
 function Footer() {
   const theme = useTheme();
-  const [activeStep, setActiveStep] = useState(0);
+  const currentForm = useSelector(getCurrentForm);
+  const dispatch = useDispatch();
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    dispatch(goNextForm());
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    dispatch(goPreForm());
   };
 
   const backButton = () => {
@@ -20,7 +24,7 @@ function Footer() {
         sx={{ fontWeight: "bolder" }}
         size="small"
         onClick={handleBack}
-        disabled={activeStep === 0}
+        disabled={currentForm === 0}
       >
         {theme.direction === "rtf" ? (
           <KeyboardArrowRight />
@@ -38,7 +42,7 @@ function Footer() {
         sx={{ fontWeight: "bolder" }}
         size="small"
         onClick={handleNext}
-        disabled={activeStep === 2}
+        disabled={currentForm === 2}
       >
         Next
         {theme.direction === "rtf" ? (
@@ -56,7 +60,7 @@ function Footer() {
         variant="dots"
         steps={3}
         position="static"
-        activeStep={activeStep}
+        activeStep={currentForm}
         sx={{ maxWidth: 700, flexGrow: 1 }}
         backButton={backButton()}
         nextButton={nextButton()}
