@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
-import { formData } from "../redux/selector";
-import { BENEFICIARY_PROFILE, relativeOptions } from "../constants";
+import { formData } from "../../redux/selector";
+import { BENEFICIARY_PROFILE, relativeOptions } from "../../constants";
 import { Input, Form, MuiSelect, useForm } from "../controls";
 
 export default function BeneficiaryForm() {

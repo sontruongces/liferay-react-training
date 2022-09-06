@@ -1,6 +1,5 @@
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
-import PropTypes from "prop-types";
 
 const style = makeStyles(() => ({
   root: {
@@ -40,23 +39,3 @@ export function Input(props) {
     />
   );
 }
-
-Input.propTypes = {
-  name: PropTypes.string,
-  value: PropTypes.string,
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-  error: PropTypes.string,
-  onChange: PropTypes.func,
-  required: PropTypes.bool
-};
-
-Input.defaultProps = {
-  name: "",
-  value: "",
-  label: "",
-  placeholder: "",
-  error: null,
-  onChange: null,
-  required: false
-};

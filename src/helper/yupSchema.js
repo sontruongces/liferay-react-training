@@ -9,7 +9,10 @@ export const insuranceFormSchema = yup.object().shape({
   idCard: yup
     .string()
     .matches(/^[0-9]{10}$/, "Id card must be exactly 10 digits"),
-  phone: yup.string().required("Phone is required"),
+  phone: yup
+    .string()
+    .required("Phone is required")
+    .matches(/^[0-9]{10}$/, "Id card must be exactly 10 digits"),
   monthlySaving: yup.number().required("Month savings is required")
 });
 

@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { FormControl } from "@mui/material";
 import { useState } from "react";
-import { updateData } from "../redux/slices/insuranceProfileSlice";
+import { updateData } from "../../redux/slices/insuranceProfileSlice";
 
 const useStyles = makeStyles((theme) => ({
   root: {

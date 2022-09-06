@@ -3,19 +3,18 @@ import { MobileStepper, useTheme } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { useState } from "react";
-import { formData, getCurrentForm } from "../redux/selector";
+import { formData, getCurrentForm } from "../../redux/selector";
 import { PaginationButton, Snackbar } from "../controls";
 import {
   goNextForm,
   goPreForm,
   updateError,
   resetErrors
-} from "../redux/slices/insuranceProfileSlice";
+} from "../../redux/slices/insuranceProfileSlice";
 import {
   insuranceFormSchema,
-  beneficiaryFormSchema,
-  contractFormSchema
-} from "../helper/yupSchema";
+  beneficiaryFormSchema
+} from "../../helper/yupSchema";
 
 function Footer() {
   const data = useSelector(formData);
@@ -29,13 +28,10 @@ function Footer() {
     schema = insuranceFormSchema;
   } else if (currentForm === 1) {
     schema = beneficiaryFormSchema;
-  } else {
-    schema = contractFormSchema;
   }
 
   const validate = () => {
     schema.validate(data, { abortEarly: false }).catch(function (err) {
-      console.log(err.inner);
       dispatch(updateError(err.inner));
       setOpenSnackbar(true);
     });

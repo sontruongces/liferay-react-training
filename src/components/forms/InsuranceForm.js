@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
-import { formData, getErrors } from "../redux/selector";
-import { INSURANCE_PROFILE } from "../constants";
+import { formData, getErrors } from "../../redux/selector";
+import { INSURANCE_PROFILE } from "../../constants";
 import { Input, Form, useForm } from "../controls";
 
 export default function InsuranceForm() {
