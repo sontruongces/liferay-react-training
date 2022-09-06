@@ -5,6 +5,4 @@ export {
   ONLINE_CONTRACT
 } from "./headerConstants";
 
-export { BENEFICIARY_FORM } from "./formElements";
-
 export { relativeOptions } from "./formConstants";
