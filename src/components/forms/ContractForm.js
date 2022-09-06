@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
 import { ONLINE_CONTRACT } from "../../constants";
-import { Form, Checkbox, SubmitButton, useForm } from "../controls";
+import { Form, Checkbox, SubmitButton, useForm, Snackbar } from "../controls";
 import { formData } from "../../redux/selector";
 import { addInsurance } from "../../services";
 
@@ -37,6 +37,8 @@ export default function ContractForm() {
   const data = useSelector(formData);
   const { values, onHandleValueChange } = useForm(initialValue);
   const [openModal, setOpenModal] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const classes = useAlertIconStyles();
   const disableSubmitButton = !values.agreement;
   const handleOpenModal = () => {
@@ -46,10 +48,16 @@ export default function ContractForm() {
     setOpenModal(false);
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    addInsurance(JSON.stringify(data));
-    navigate("/success");
+    try {
+      await addInsurance(JSON.stringify(data));
+      navigate("/success");
+    } catch (error) {
+      console.log(error.message);
+      setErrorMessage(error.message);
+      setOpenSnackbar(true);
+    }
   };
   return (
     <Form>
@@ -101,6 +109,12 @@ export default function ContractForm() {
           </Typography>
         </Box>
       </Modal>
+      <Snackbar
+        message={errorMessage}
+        openSnackbar={openSnackbar}
+        type="error"
+        setOpenSnackbar={setOpenSnackbar}
+      />
     </Form>
   );
 }
