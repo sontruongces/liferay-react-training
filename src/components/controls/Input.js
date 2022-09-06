@@ -1,5 +1,14 @@
 import { TextField } from "@mui/material";
+import { makeStyles } from "@material-ui/core";
 import PropTypes from "prop-types";
+
+const style = makeStyles(() => ({
+  root: {
+    "& .MuiFormHelperText-root": {
+      color: "red"
+    }
+  }
+}));
 
 export function Input(props) {
   const {
@@ -9,14 +18,21 @@ export function Input(props) {
     placeholder,
     error = null,
     onChange,
-    required
+    required,
+    type,
+    helperText
   } = props;
+  const classes = style();
   return (
     <TextField
+      className={classes.root}
+      InputLabelProps={{ shrink: true }}
+      helperText={helperText}
       variant="outlined"
       label={label}
       name={name}
       value={value}
+      type={type}
       placeholder={placeholder}
       onChange={onChange}
       required={required}
