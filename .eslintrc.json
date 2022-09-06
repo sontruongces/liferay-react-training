@@ -21,6 +21,13 @@
     "prettier/prettier": "error",
     "linebreak-style": ["error", "unix"],
     "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "import/prefer-default-export": "off",
+    "react/prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-plusplus": "off",
+    "no-param-reassign": "off",
+    "no-unneeded-ternary": "off",
+    "jsx-a11y/anchor-is-valid": "off"
   }
 }
