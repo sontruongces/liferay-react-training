@@ -1,12 +1,16 @@
 import { Stack, Alert, Link, Box, Modal, Typography } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { formData } from "../redux/selector";
-import { ONLINE_CONTRACT } from "../constants";
-import { Form, Checkbox, SubmitButton } from "../controls";
-import { insuranceFormSchema } from "../helper/yupSchema";
-import { updateError } from "../redux/slices/insuranceProfileSlice";
+import { ONLINE_CONTRACT } from "../../constants";
+import { Form, Checkbox, SubmitButton, useForm } from "../controls";
+import { formData } from "../../redux/selector";
+import { addInsurance } from "../../services";
+
+const initialValue = {
+  agreement: false
+};
 
 const style = {
   position: "absolute",
@@ -29,27 +33,23 @@ const useAlertIconStyles = makeStyles(() => ({
 }));
 
 export default function ContractForm() {
+  const navigate = useNavigate();
   const data = useSelector(formData);
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
+  const { values, onHandleValueChange } = useForm(initialValue);
+  const [openModal, setOpenModal] = useState(false);
   const classes = useAlertIconStyles();
-  const handleOpen = () => {
-    setOpen(true);
+  const disableSubmitButton = !values.agreement;
+  const handleOpenModal = () => {
+    setOpenModal(true);
   };
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
 
-  const onSubmit = async () => {
-    const valid = await insuranceFormSchema.isValid(data);
-    if (!valid) {
-      insuranceFormSchema
-        .validate(data, { abortEarly: false })
-        .catch(function (err) {
-          console.log(err);
-          dispatch(updateError(err.inner));
-        });
-    }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    addInsurance(JSON.stringify(data));
+    navigate("/success");
   };
   return (
     <Form>
@@ -63,22 +63,27 @@ export default function ContractForm() {
           >
             <Box>
               Please see the detail contract{" "}
-              <Link sx={{ cursor: "pointer" }} href onClick={handleOpen}>
+              <Link sx={{ cursor: "pointer" }} onClick={handleOpenModal}>
                 here
               </Link>
             </Box>
             <Box>
-              <Checkbox label="I agree to submit my information to the Insurance Company after checking the online contract" />
+              <Checkbox
+                name="agreement"
+                onHandleValueChange={onHandleValueChange}
+                value={values.agreement}
+                label="I agree to submit my information to the Insurance Company after checking the online contract"
+              />
             </Box>
           </Alert>
         </Stack>
         <Box sx={{ margin: "2rem 1rem", textAlign: "right" }}>
-          <SubmitButton onClick={onSubmit} />
+          <SubmitButton disabled={disableSubmitButton} onClick={onSubmit} />
         </Box>
       </Box>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={openModal}
+        onClose={handleCloseModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

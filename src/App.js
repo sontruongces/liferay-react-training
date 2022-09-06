@@ -1,35 +1,18 @@
 import "./App.css";
-import { Box } from "@mui/material";
-import { useSelector } from "react-redux";
-import Header from "./components/header/Header";
-import Footer from "./components/footer/Footer";
-import {
-  ContractForm,
-  InsuranceForm,
-  BeneficiaryForm
-} from "./components/forms";
-import { getCurrentForm } from "./components/redux/selector";
-
-const getForm = () => {
-  const currentForm = useSelector(getCurrentForm);
-  switch (currentForm) {
-    case 0:
-      return <InsuranceForm />;
-    case 1:
-      return <BeneficiaryForm />;
-    case 2:
-      return <ContractForm />;
-    default:
-      return <InsuranceForm />;
-  }
-};
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import FormWrapper from "./components/forms/FromWrapper";
+import SuccessPage from "./components/pages/SuccessPage";
+import history from "./history";
 
 function App() {
   return (
     <div className="app">
-      <Header />
-      <Box sx={{ marginTop: "2rem", marginBottom: "5rem" }}>{getForm()}</Box>
-      <Footer />
+      <Router history={history}>
+        <Routes>
+          <Route path="/" exact element={<FormWrapper />} />
+          <Route path="/success" element={<SuccessPage />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
