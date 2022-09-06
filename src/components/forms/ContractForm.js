@@ -1,8 +1,12 @@
 import { Stack, Alert, Link, Box, Modal, Typography } from "@mui/material";
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import { useSelector, useDispatch } from "react-redux";
+import { formData } from "../redux/selector";
 import { ONLINE_CONTRACT } from "../constants";
 import { Form, Checkbox, SubmitButton } from "../controls";
+import { insuranceFormSchema } from "../helper/yupSchema";
+import { updateError } from "../redux/slices/insuranceProfileSlice";
 
 const style = {
   position: "absolute",
@@ -24,7 +28,9 @@ const useAlertIconStyles = makeStyles(() => ({
   }
 }));
 
-export default function ContactForm() {
+export default function ContractForm() {
+  const data = useSelector(formData);
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
   const classes = useAlertIconStyles();
   const handleOpen = () => {
@@ -34,6 +40,17 @@ export default function ContactForm() {
     setOpen(false);
   };
 
+  const onSubmit = async () => {
+    const valid = await insuranceFormSchema.isValid(data);
+    if (!valid) {
+      insuranceFormSchema
+        .validate(data, { abortEarly: false })
+        .catch(function (err) {
+          console.log(err);
+          dispatch(updateError(err.inner));
+        });
+    }
+  };
   return (
     <Form>
       <Box>
@@ -56,7 +73,7 @@ export default function ContactForm() {
           </Alert>
         </Stack>
         <Box sx={{ margin: "2rem 1rem", textAlign: "right" }}>
-          <SubmitButton />
+          <SubmitButton onClick={onSubmit} />
         </Box>
       </Box>
       <Modal
@@ -67,7 +84,7 @@ export default function ContactForm() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Contract
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.

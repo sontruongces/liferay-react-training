@@ -1,1 +1,1 @@
-export { getCurrentForm } from "./insuranceSelector";
+export { getCurrentForm, formData, getErrors } from "./insuranceSelector";

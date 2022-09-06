@@ -1,5 +1,5 @@
 import BeneficiaryForm from "./BeneficiaryForm";
 import InsuranceForm from "./InsuranceForm";
-import ContactForm from "./ContactForm";
+import ContractForm from "./ContractForm";
 
-export { BeneficiaryForm, InsuranceForm, ContactForm };
+export { BeneficiaryForm, InsuranceForm, ContractForm };

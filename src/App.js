@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import {
-  ContactForm,
+  ContractForm,
   InsuranceForm,
   BeneficiaryForm
 } from "./components/forms";
@@ -18,7 +18,7 @@ const getForm = () => {
     case 1:
       return <BeneficiaryForm />;
     case 2:
-      return <ContactForm />;
+      return <ContractForm />;
     default:
       return <InsuranceForm />;
   }
