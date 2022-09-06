@@ -25,10 +25,3 @@ export const beneficiaryFormSchema = yup.object().shape({
   beneficiaryPhone: yup.string().required("Phone is required"),
   relationship: yup.string().required()
 });
-
-export const contractFormSchema = yup.object().shape({
-  confirmation: yup.bool(
-    false,
-    "Make sure you read the contract and agree before submit"
-  )
-});
