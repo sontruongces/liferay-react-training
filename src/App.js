@@ -1,7 +1,7 @@
 import "./App.css";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import FormWrapper from "./components/forms/FromWrapper";
-import SuccessPage from "./components/pages/SuccessPage";
+import SuccessPage from "./components/pages";
 import history from "./history";
 
 function App() {

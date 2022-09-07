@@ -11,10 +11,7 @@ import {
   updateError,
   resetErrors
 } from "../../redux/slices/insuranceProfileSlice";
-import {
-  insuranceFormSchema,
-  beneficiaryFormSchema
-} from "../../helper/yupSchema";
+import { insuranceFormSchema, beneficiaryFormSchema } from "../../helper";
 
 function Footer() {
   const data = useSelector(formData);
