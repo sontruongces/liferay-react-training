@@ -1,10 +1,10 @@
-import { Input } from "./Input";
+import { Input } from "./Input/Input";
 import { Form, useForm } from "./useForm";
-import { Select as MuiSelect } from "./Select";
-import { Checkbox } from "./Checkbox";
-import { SubmitButton } from "./buttons/SubmitButton";
-import { PaginationButton } from "./buttons/PaginationButton";
-import { Snackbar } from "./Snackbar";
+import { Select as MuiSelect } from "./Select/Select";
+import { Checkbox } from "./Checkbox/Checkbox";
+import { SubmitButton } from "./Button/SubmitButton";
+import { PaginationButton } from "./Button/PaginationButton";
+import { Snackbar } from "./Snackbar/Snackbar";
 
 export {
   Input,

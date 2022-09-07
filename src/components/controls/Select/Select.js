@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   FormControl,
   InputLabel,
@@ -20,3 +21,21 @@ export function Select(props) {
     </FormControl>
   );
 }
+
+Select.propTypes = {
+  name: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.instanceOf(Array),
+  required: PropTypes.bool
+};
+
+Select.defaultProps = {
+  name: "",
+  label: "",
+  value: "",
+  onChange: null,
+  options: [],
+  required: false
+};

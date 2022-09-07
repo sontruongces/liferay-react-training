@@ -54,7 +54,6 @@ export default function ContractForm() {
       await addInsurance(JSON.stringify(data));
       navigate("/success");
     } catch (error) {
-      console.log(error.message);
       setErrorMessage(error.message);
       setOpenSnackbar(true);
     }

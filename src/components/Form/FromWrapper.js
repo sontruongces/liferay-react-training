@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import Header from "../header";
-import Footer from "../footer";
+import Header from "../Header";
+import Footer from "../Footer";
 import { ContractForm, InsuranceForm, BeneficiaryForm } from "./index";
 import { getCurrentForm } from "../../redux/selector";
 

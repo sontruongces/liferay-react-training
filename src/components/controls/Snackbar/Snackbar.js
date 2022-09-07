@@ -1,4 +1,5 @@
 import { Snackbar as MuiSnackbar, Alert } from "@mui/material";
+import PropTypes from "prop-types";
 
 export function Snackbar({ message, openSnackbar, setOpenSnackbar, type }) {
   const handleClose = () => {
@@ -16,3 +17,17 @@ export function Snackbar({ message, openSnackbar, setOpenSnackbar, type }) {
     </MuiSnackbar>
   );
 }
+
+Snackbar.propTypes = {
+  message: PropTypes.string,
+  openSnackbar: PropTypes.bool,
+  setOpenSnackbar: PropTypes.func,
+  type: PropTypes.string
+};
+
+Snackbar.defaultProps = {
+  message: "",
+  openSnackbar: false,
+  setOpenSnackbar: null,
+  type: ""
+};

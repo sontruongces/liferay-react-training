@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   FormGroup,
   FormControlLabel,
@@ -31,3 +32,17 @@ export function Checkbox(props) {
     </FormGroup>
   );
 }
+
+Checkbox.propTypes = {
+  label: PropTypes.string,
+  onHandleValueChange: PropTypes.func,
+  value: PropTypes.bool,
+  name: PropTypes.string
+};
+
+Checkbox.defaultProps = {
+  label: "",
+  onHandleValueChange: null,
+  value: false,
+  name: ""
+};

@@ -1,5 +1,6 @@
 import { TextField } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const style = makeStyles(() => ({
   root: {
@@ -15,7 +16,6 @@ export function Input(props) {
     value,
     label,
     placeholder,
-    error = null,
     onChange,
     required,
     type,
@@ -35,7 +35,28 @@ export function Input(props) {
       placeholder={placeholder}
       onChange={onChange}
       required={required}
-      {...(error && { error: true, helperText: error })}
     />
   );
 }
+
+Input.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.any,
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  required: PropTypes.bool,
+  type: PropTypes.string,
+  helperText: PropTypes.string
+};
+
+Input.defaultProps = {
+  name: "",
+  value: "",
+  label: "",
+  placeholder: "",
+  onChange: null,
+  required: false,
+  type: "",
+  helperText: ""
+};
